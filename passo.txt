@@ -1,0 +1,48 @@
+npm init
+.gitignore
+
+# Instalar Express
+npm add express
+
+# Alteração no package Json
+nodemon
+type module
+
+
+# Instalar arquivos padrões
+bcrypt, cors, dotenv, express-bearer-token, jsonwebtoken. knex(opcioanal), mysql2(opcional)
+
+#configuração basica index.js
+importar pacotes
+dotenv.config()
+const app = express()
+app.use(...)
+importar rotas
+
+app.get("/", (_, res) => {
+  return res.send("Sistem Working");
+});
+
+app.listen(4000, async () => {
+  const result = await knex("users");
+
+  console.log("Server working in PORT 4000");
+});
+
+# Estrutura das pastas
+rotas,
+modules,
+conxexão com database
+
+# Configurar knex
+
+Knex config = knex({})
+
+# Criar as rotas
+
+Criar routes, controllers, service e models
+
+
+
+
+
