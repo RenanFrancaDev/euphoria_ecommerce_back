@@ -8,6 +8,7 @@ export const up = function (knex) {
     table.string("name");
     table.string("email");
     table.string("password");
+    table.enu("type", ["adm", "user"]);
     table.timestamps(true, true);
   });
 };

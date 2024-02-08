@@ -1,5 +1,6 @@
 import knex from "../services/knex.js";
 import bcrypt from "bcrypt";
+import SchemaUser from "../models/user.js";
 
 const TABLE = "users";
 
