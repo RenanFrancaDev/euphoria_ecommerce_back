@@ -1,5 +1,4 @@
 import knex from "../services/knex.js";
-import bcrypt from "bcrypt";
 
 const TABLE = "address";
 
