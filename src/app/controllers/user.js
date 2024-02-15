@@ -5,13 +5,20 @@ import SchemaUser from "../models/user.js";
 const TABLE = "users";
 
 export const getAll = () => {
-  return knex(TABLE).select("id", "name", "email", "created_at", "updated_at");
+  return knex(TABLE).select(
+    "id",
+    "name",
+    "email",
+    "type",
+    "created_at",
+    "updated_at"
+  );
 };
 
 export const get = (id) => {
   return knex(TABLE)
     .where({ id })
-    .select("id", "name", "email", "created_at", "updated_at")
+    .select("id", "name", "email", "type", "created_at", "updated_at")
     .first();
 };
 
