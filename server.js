@@ -5,7 +5,9 @@ import cors from "cors";
 import bearerToken from "express-bearer-token";
 import userRoute from "./src/app/routes/user.js";
 import authRoute from "./src/app/routes/auth.js";
-import authAddress from "./src/app/routes/address.js";
+import addressRoute from "./src/app/routes/address.js";
+import productRoute from "./src/app/routes/product.js";
+import uploadImgRoute from "./src/app/routes/imgProducts.js";
 
 const app = express();
 app.use(express.json());
@@ -14,7 +16,9 @@ app.use(bearerToken());
 
 app.use("/users", userRoute);
 app.use("/auth", authRoute);
-app.use("/address", authAddress);
+app.use("/address", addressRoute);
+app.use("/products", productRoute);
+app.use("/upload-productsimg", uploadImgRoute);
 
 app.get("/", (_, res) => {
   return res.send("Sistem Working");
