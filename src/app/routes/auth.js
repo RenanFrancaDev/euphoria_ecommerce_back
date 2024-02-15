@@ -7,6 +7,7 @@ const router = Router();
 
 router.post("/login", async (req, res) => {
   try {
+    console.log("foi");
     const data = await login(req.body);
     res.status(200).json({ data });
   } catch {

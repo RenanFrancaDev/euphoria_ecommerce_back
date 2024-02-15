@@ -9,6 +9,8 @@ export const getAll = () => {
     "id",
     "name",
     "email",
+    "cpf",
+    "cellphone",
     "type",
     "created_at",
     "updated_at"
@@ -18,11 +20,21 @@ export const getAll = () => {
 export const get = (id) => {
   return knex(TABLE)
     .where({ id })
-    .select("id", "name", "email", "type", "created_at", "updated_at")
+    .select(
+      "id",
+      "name",
+      "email",
+      "cpf",
+      "cellphone",
+      "type",
+      "created_at",
+      "updated_at"
+    )
     .first();
 };
 
 export const save = (params) => {
+  console.log(params);
   params.password = bcrypt.hashSync(params.password, 10);
   return knex(TABLE).insert(params);
 };
@@ -37,4 +49,8 @@ export const remove = (id) => {
 
 export const getByEmail = (email) => {
   return knex(TABLE).where({ email }).first();
+};
+
+export const getByCpf = (cpf) => {
+  return knex(TABLE).where({ cpf }).first();
 };

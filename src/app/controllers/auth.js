@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { save, getByEmail } from "./user.js";
+import { save, getByEmail, getByCpf } from "./user.js";
 
 export const login = async (params) => {
   const user = await getByEmail(params.email);
@@ -23,6 +23,11 @@ export const register = async (params) => {
 
   if (user) {
     return { error: "This e-mails already exist" };
+  }
+
+  const cpf = await getByCpf(params.cpf);
+  if (cpf) {
+    return { error: "This cpf already exist" };
   }
 
   const userCreated = await save(params);
