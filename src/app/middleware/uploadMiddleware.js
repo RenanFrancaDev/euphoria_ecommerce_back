@@ -4,7 +4,7 @@ import fs from "fs";
 export const uploadMiddleware = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      const uploadDirectory = `./public/img_products/${req.params.id}`;
+      const uploadDirectory = `C:/Users/renan/OneDrive/Documentos/Projetos/Euphoria_ecommerce/frontend/public/fotos/products/${req.params.id}`;
 
       console.log(req.params);
 
