@@ -41,7 +41,27 @@ router.post("/:id", uploadMiddleware.single("image"), async (req, res) => {
     return res.status(400).json({
       erro: true,
       mensagem:
-        "Erro: Upload não realizado com sucesso, necessário enviar uma imagem PNG ou JPG!",
+        "Erro: Upload da foto não realizado com sucesso, necessário enviar uma imagem PNG ou JPG!",
+    });
+  }
+});
+
+router.put("/:id", uploadMiddleware.single("image"), async (req, res) => {
+  try {
+    req.body_product_id = req.params.id;
+    const data = await knex("products_img").insert({
+      image: req.file.filename,
+      product_id: req.params.id,
+    });
+    res.status(200).json({
+      erro: false,
+      mensagem: "Upload realizado com sucesso!",
+      data,
+    });
+  } catch (error) {
+    res.status(400).json({
+      erro: true,
+      mensagem: "Erro: Upload não realizado com sucesso!",
     });
   }
 });
