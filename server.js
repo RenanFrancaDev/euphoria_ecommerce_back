@@ -7,6 +7,7 @@ import userRoute from "./src/app/routes/user.js";
 import authRoute from "./src/app/routes/auth.js";
 import addressRoute from "./src/app/routes/address.js";
 import productRoute from "./src/app/routes/product.js";
+import categoryRoute from "./src/app/routes/category.js";
 import uploadImgRoute from "./src/app/routes/imgProducts.js";
 
 const app = express();
@@ -18,6 +19,7 @@ app.use("/users", userRoute);
 app.use("/auth", authRoute);
 app.use("/address", addressRoute);
 app.use("/products", productRoute);
+app.use("/categories", categoryRoute);
 app.use("/upload-productsimg", uploadImgRoute);
 
 app.get("/", (_, res) => {
