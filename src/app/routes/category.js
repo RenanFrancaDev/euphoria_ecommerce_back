@@ -7,6 +7,10 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     const data = await knex("category").select();
+
+    for (let i = 0; i < data.length; i++) {
+      data[i].image = `http://localhost:3000/fotos/category/${data[i].image}`;
+    }
     res.status(200).json({ data });
   } catch (error) {
     res.status(400).json({
