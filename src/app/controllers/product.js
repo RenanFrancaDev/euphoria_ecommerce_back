@@ -45,6 +45,19 @@ export const getDiscount = async () => {
   return prodWithDiscount;
 };
 
+export const getByCategory = async (params) => {
+  console.log(params.category);
+  const products = await getAll();
+  const productsByCategory = [];
+
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].category === params.category) {
+      productsByCategory.push(products[i]);
+    }
+  }
+  return productsByCategory;
+};
+
 export const get = async (id) => {
   const product = await knex(TABLE).where({ id }).select().first();
 

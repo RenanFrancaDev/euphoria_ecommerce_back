@@ -6,11 +6,12 @@ import {
   save,
   update,
   remove,
+  getByCategory,
 } from "../controllers/product.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = Router();
-//TODO Middleware
+//TODO Middleware e arrumar o error
 
 router.get("/", async (req, res) => {
   try {
@@ -24,6 +25,15 @@ router.get("/", async (req, res) => {
 router.get("/discount", async (req, res) => {
   try {
     const data = await getDiscount();
+    res.status(200).json({ data });
+  } catch (error) {
+    res.status(400).json({ error: "não foi" });
+  }
+});
+
+router.get("/bycategory/:category", async (req, res) => {
+  try {
+    const data = await getByCategory(req.params);
     res.status(200).json({ data });
   } catch (error) {
     res.status(400).json({ error: "não foi" });
