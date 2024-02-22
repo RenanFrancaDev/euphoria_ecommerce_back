@@ -1,13 +1,29 @@
 import { Router } from "express";
-import { getAll, get, save, update, remove } from "../controllers/product.js";
+import {
+  getAll,
+  getDiscount,
+  get,
+  save,
+  update,
+  remove,
+} from "../controllers/product.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = Router();
 //TODO Middleware
+
 router.get("/", async (req, res) => {
   try {
     const data = await getAll();
-    data.price_final = data.price - data.price * data.discount;
+    res.status(200).json({ data });
+  } catch (error) {
+    res.status(400).json({ error: "não foi" });
+  }
+});
+
+router.get("/discount", async (req, res) => {
+  try {
+    const data = await getDiscount();
     res.status(200).json({ data });
   } catch (error) {
     res.status(400).json({ error: "não foi" });
