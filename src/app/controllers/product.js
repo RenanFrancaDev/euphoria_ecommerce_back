@@ -2,6 +2,7 @@ import knex from "../services/knex.js";
 
 const TABLE = "products";
 const TABLE_IMG = "products_img";
+const TABLE_CAT = "category";
 
 export const getAll = async () => {
   // Busca todos os produtos da tabela products
@@ -19,10 +20,29 @@ export const getAll = async () => {
         product_id: product.id,
       })
       .select("image");
-    product.imageUrls = images;
+    product.imageUrls = images.map((image) => image.image);
+  }
+
+  for (let product of products) {
+    const categories = await knex(TABLE_CAT)
+      .where({ id: product.category_id })
+      .select("name");
+    product.category = categories[0].name;
   }
 
   return products;
+};
+
+export const getDiscount = async () => {
+  const products = await getAll();
+  const prodWithDiscount = [];
+
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].discount > 0) {
+      prodWithDiscount.push(products[i]);
+    }
+  }
+  return prodWithDiscount;
 };
 
 export const get = async (id) => {
