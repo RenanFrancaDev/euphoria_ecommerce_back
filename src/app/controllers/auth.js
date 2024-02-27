@@ -4,7 +4,6 @@ import { save, getByEmail, getByCpf } from "./user.js";
 
 export const login = async (params) => {
   const user = await getByEmail(params.email);
-
   if (!user) {
     return { error: "Invalid e-mail or password" };
   }
@@ -15,7 +14,13 @@ export const login = async (params) => {
   }
 
   const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-  return { token };
+  return {
+    token,
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    type: user.type,
+  };
 };
 
 export const register = async (params) => {
