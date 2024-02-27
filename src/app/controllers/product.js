@@ -46,7 +46,6 @@ export const getDiscount = async () => {
 };
 
 export const getByCategory = async (params) => {
-  console.log(params.category);
   const products = await getAll();
   const productsByCategory = [];
 
@@ -69,7 +68,12 @@ export const get = async (id) => {
     })
     .select("image");
 
-  product.imageUrls = images;
+  product.imageUrls = images.map((image) => image.image);
+
+  const categories = await knex(TABLE_CAT)
+    .where({ id: product.category_id })
+    .select("name");
+  product.category = categories[0].name;
 
   return product;
 };

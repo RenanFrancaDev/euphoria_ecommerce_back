@@ -35,7 +35,6 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", uploadMiddleware.single("image"), async (req, res) => {
-  console.log(req.body);
   if (req.file) {
     try {
       const data = await knex("category").insert({

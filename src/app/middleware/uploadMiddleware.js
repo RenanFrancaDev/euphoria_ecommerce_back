@@ -6,8 +6,6 @@ export const uploadMiddleware = multer({
     destination: (req, file, cb) => {
       const uploadDirectory = `C:/Users/renan/OneDrive/Documentos/Projetos/Euphoria_ecommerce/frontend/public/fotos/products/${req.params.id}`;
 
-      console.log(req.params);
-
       if (!fs.existsSync(uploadDirectory)) {
         fs.mkdirSync(uploadDirectory, { recursive: true });
       }
