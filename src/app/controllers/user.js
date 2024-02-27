@@ -34,12 +34,12 @@ export const get = (id) => {
 };
 
 export const save = (params) => {
-  console.log(params);
   params.password = bcrypt.hashSync(params.password, 10);
   return knex(TABLE).insert(params);
 };
 
 export const update = (id, params) => {
+  params.password = bcrypt.hashSync(params.password, 10);
   return knex(TABLE).where({ id }).update(params);
 };
 
