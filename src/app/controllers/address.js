@@ -16,21 +16,8 @@ export const getAll = () => {
   );
 };
 
-export const get = (id) => {
-  return knex(TABLE)
-    .where({ id })
-    .select(
-      "id",
-      "user_id",
-      "cep",
-      "street",
-      "neighborhood",
-      "number",
-      "complement",
-      "created_at",
-      "updated_at"
-    )
-    .first();
+export const getAddressByUser = (id) => {
+  return knex(TABLE).where({ user_id: id });
 };
 
 export const save = (params) => {

@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { getAll, get, save, update, remove } from "../controllers/address.js";
+import {
+  getAll,
+  save,
+  update,
+  remove,
+  getAddressByUser,
+} from "../controllers/address.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = Router();
@@ -13,18 +19,17 @@ router.get("/", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/:id", authMiddleware, async (req, res) => {
+router.get("/user/:id", async (req, res) => {
   try {
-    const data = await get(req.params.id, req.user.id);
+    const data = await getAddressByUser(req.params.id);
     res.status(200).json({ data });
   } catch (error) {
     res.status(400).json({ error });
   }
 });
 
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    req.body.user_id = req.user.id;
     const data = await save(req.body);
     res.status(200).json({ data });
   } catch (error) {
